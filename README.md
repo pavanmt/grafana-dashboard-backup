@@ -68,7 +68,7 @@ kubectl logs grafanabackup-hourly-1588834800-m7jz4 -n gb
 
 [2020-05-07T07:00:48] INFO [MainThread] [grafana_backup.py:backup_grafana_dashboard:327] Running Grafana Backup script!
 [2020-05-07T07:00:48] INFO [MainThread] [grafana_backup.py:__init__:37] Local backup is enabled and storing under : /backup/
-[2020-05-07T07:00:52] INFO [MainThread] [grafana_backup.py:__init__:42] s3 backup is enabled for bucket ct-prometheus-cortex-qa and storing under : grafana/backup/
+[2020-05-07T07:00:52] INFO [MainThread] [grafana_backup.py:__init__:42] s3 backup is enabled for bucket s3-aws-bucket and storing under : grafana/backup/
 [2020-05-07T07:00:52] INFO [Thread-1] [grafana_backup.py:__s3_store:47] Storing data : grafana/backup/hourly/gfbk/.meta_data
 [2020-05-07T07:00:53] INFO [Thread-1] [grafana_backup.py:__store:250] Storing data on folder : /backup/hourly/gfbk/
 [2020-05-07T07:00:53] INFO [Thread-1] [grafana_backup.py:_store_meta_info:242] Taking Hourly Grafana JSON file Backup for host Gfbk.

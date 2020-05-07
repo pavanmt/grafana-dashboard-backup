@@ -95,7 +95,7 @@ kubectl logs grafanabackup-hourly-1588834800-m7jz4 -n gb
   S3:
   <bucket_name>/grafana/backup/hourly/<host_name>/<dbname>_<uid>.json
   PV:
-   <backup_folder_name>/hourly/<host_name>/<dbname>_<uid>.json
+  <backup_folder_name>/hourly/<host_name>/<dbname>_<uid>.json
 
 # Daily Backup Folder
 

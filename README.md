@@ -114,7 +114,7 @@ kubectl logs grafanabackup-hourly-1588834800-m7jz4 -n gb
 
 * S3 bucket folder structure snapshot
 
-![image](https://user-images.githubusercontent.com/58762864/81266228-09925080-9062-11ea-9746-28a2ade20ded.png)
+![s3_bucket](https://user-images.githubusercontent.com/5840018/81284337-9b5a8780-907b-11ea-8e4f-3308c43c8acd.png)
 
 
 ## Running Script Locally

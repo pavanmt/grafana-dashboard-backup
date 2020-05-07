@@ -1,0 +1,40 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  labels:
+    grafana-backup: "true"
+  name: grafanabackup-hourly
+spec:
+  schedule: "*/60 * * * *"
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 1
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          labels:
+              grafana-backup: "true"
+        spec:
+          restartPolicy: OnFailure
+          volumes:
+          - name: gbhourly-volume
+            persistentVolumeClaim:
+              claimName: gb-hourly-pvc
+          - name: secret-volume
+            secret:
+              secretName: grafana-config-secret
+          containers:
+          - name: grafan-backup-hourly
+            image: pavanmt9/grafana_backup:latest
+            imagePullPolicy: IfNotPresent
+            env:
+              - name: PARAMS
+                value: "-b hourly -conf /etc/grafana/grafana_urls.json"
+            volumeMounts:
+            - mountPath: "/backup"
+              name: gbhourly-volume
+            - name: secret-volume
+              mountPath: /etc/grafana
+          imagePullSecrets:
+          - name: artifact-secret-prod

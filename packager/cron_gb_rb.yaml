@@ -1,0 +1,40 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  labels:
+    grafana-backup: "true"
+  name: grafanabackup-rb
+spec:
+  schedule: "0 20 * * *"
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 1
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          labels:
+              grafana-backup: "true"
+        spec:
+          restartPolicy: OnFailure
+          volumes:
+          - name: gbrb-volume
+            persistentVolumeClaim:
+              claimName: gb-rb-pvc
+          - name: secret-volume
+            secret:
+              secretName: grafana-config-secret
+          containers:
+          - name: grafan-backup-daily
+            image: pavanmt9/grafana_backup:latest
+            imagePullPolicy: IfNotPresent
+            env:
+              - name: PARAMS
+                value: "-rb all -conf /etc/grafana/grafana_urls.json"
+            volumeMounts:
+            - mountPath: "/backup"
+              name: gbrb-volume
+            - name: secret-volume
+              mountPath: /etc/grafana
+          imagePullSecrets:
+          - name: artifact-secret-prod

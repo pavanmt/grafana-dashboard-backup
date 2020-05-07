@@ -1,5 +1,5 @@
 ## Introduction
-A Python-based application to backup Grafana Dashboard snapshot as JSON via Grafana API. This backup script can be run locally or through Kubernetes cron job.
+This project was an initiative to overcome the DevOps manual efforts to take up the snapshot backups in an automated way. A Python based application to help in taking backup of Grafana Dashboard snapshot as JSON via interacting with Grafana API. This backup script can be run locally or through Kubernetes cron job.
 
 ## Features
 * Easily backup, restore, and create Grafana Dashboards.
